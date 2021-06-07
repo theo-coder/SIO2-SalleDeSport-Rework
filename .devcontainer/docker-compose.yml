@@ -1,0 +1,11 @@
+version: '3'
+services:
+  symfony:
+    container_name: SIO_SalleDeSport-Rework
+    build: .
+    volumes:
+      - ../:/workspace:cached
+networks:
+  default:
+   external:
+    name: network

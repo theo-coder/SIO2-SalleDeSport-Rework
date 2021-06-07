@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -66,6 +68,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="boolean")
      */
     private $isNewsletter;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy="articleEditor")
+     */
+    private $articles;
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -226,6 +238,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsNewsletter(bool $isNewsletter): self
     {
         $this->isNewsletter = $isNewsletter;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Article[]
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): self
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles[] = $article;
+            $article->setArticleEditor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): self
+    {
+        if ($this->articles->removeElement($article)) {
+            // set the owning side to null (unless already changed)
+            if ($article->getArticleEditor() === $this) {
+                $article->setArticleEditor(null);
+            }
+        }
 
         return $this;
     }

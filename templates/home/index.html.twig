@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'accueil{% endblock %}
+
+{% block body %}
+{# ARTICLES #}
+{# END ARTICLES #}
+{# SECTION OFFRES #}
+<h1 style="display:inline-block;" class="mt-5">Nos offres</h1>
+<div class="d-flex justify-content-around mt-4">
+    <div class="card" style="width: 18rem; max-height: 30rem; overflow:hidden;">
+        <img src="https://via.placeholder.com/348x220&text= " style="max-height:220px;" class="card-img-top" alt="">
+            <div class="card-body">
+                <h5 class="card-title">Offre Débutant</h5>
+                <p class="card-text" style="max-height: 5rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">Pour des petits muscles</p>
+                <p class="card-text" style="max-height: 5rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">Prix: 10€</p>
+            </div>
+    </div>
+    <div class="card" style="width: 18rem; max-height: 30rem; overflow:hidden;">
+        <img src="https://via.placeholder.com/348x220&text= " style="max-height:220px;" class="card-img-top" alt="">
+            <div class="card-body">
+                <h5 class="card-title">Offre Confirmé</h5>
+                <p class="card-text" style="max-height: 5rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">Pour des muscles soignés</p>
+                <p class="card-text" style="max-height: 5rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">Prix: 20€</p>
+            </div>
+    </div>
+    <div class="card" style="width: 18rem; max-height: 30rem; overflow:hidden;">
+        <img src="https://via.placeholder.com/348x220&text= " style="max-height:220px;" class="card-img-top" alt="">
+            <div class="card-body">
+                <h5 class="card-title">Offre Expert</h5>
+                <p class="card-text" style="max-height: 5rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">Pour des muscles en béton</p>
+                <p class="card-text" style="max-height: 5rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">Prix: 30€</p>
+            </div>
+    </div>
+</div>
+{# END OFFRES #}
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h1 class="mt-4 title">Articles</h1>
+    
+    <hr>
+    {% for category in categories %}
+        {% if category.articles|length != 0 %}
+            <br>
+            <h2 style="display:inline-block;" class="mt-2 ml-1">{{ category.name }} :</h2>
+            {% if category.articles|length >=3 %}
+                <a href="{{ path('category', {'id': category.id}) }}" class="ml-3"><span class="badge badge-primary">Voir plus</span></a>
+            {% endif %}
+            <div class='container'>
+                <div class="row">
+                    {% if category.articles|length >=3 %}
+                        {% for i in category.articles|length -1 ..category.articles|length -3 %}
+                            <div class="col-sm">
+                                <div class="card" style="width: 18rem; max-height: 30rem; overflow:hidden;">
+                                    {% if category.articles[i].image %}
+                                        <img src="{{ category.articles[i].image }}" style="max-height:220px;" class="card-img-top" alt="">
+                                    {% else %}
+                                        <img src="https://via.placeholder.com/348x220&text= " style="max-height:220px;" class="card-img-top" alt="">
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ category.articles[i].name }}</h5>
+                                        <p class="card-text" style="max-height: 5rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">{{ category.articles[i].content }}</p>
+                                        <a href="{{ path('article', {'id': category.articles[i].id}) }}" class="btn btn-primary">Voir plus</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        {% for article in category.articles %}
+                            <div class="col-sm">
+                                <div class="card" style="width: 18rem;">
+                                    {% if article.image %}
+                                        <img src="{{ article.image }}" style="max-height:220px;" class="card-img-top" alt="">
+                                    {% else %}
+                                        <img src="https://via.placeholder.com/348x220&text= " style="max-height:220px;" class="card-img-top" alt="">
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ article.name }}</h5>
+                                        <p class="card-text" style="max-height: 30rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">{{ article.content }}</p>
+                                        <a href="{{ path('article', {'id': article.id}) }}" class="btn btn-primary">Voir plus</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {% for i in category.articles|length .. 2 %}
+                            <div class="col-sm">
+                            </div
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            {#<div class="d-flex justify-content-around mt-4">
+                {% if category.articles|length >=3 %}
+                    {% for i in category.articles|length -1 ..category.articles|length -3 %}
+                        
+                    {% endfor %}
+                {% else %}
+                    {% for article in category.articles %}
+                        <div class="card" style="width: 18rem;">
+                            {% if article.image %}
+                                <img src="{{ article.image }}" style="max-height:220px;" class="card-img-top" alt="">
+                            {% else %}
+                                <img src="https://via.placeholder.com/348x220&text= " style="max-height:220px;" class="card-img-top" alt="">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ article.name }}</h5>
+                                <p class="card-text" style="max-height: 30rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">{{ article.content }}</p>
+                                <a href="{{ path('article', {'id': article.id}) }}" class="btn btn-primary">Voir plus</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>#}
+
+            {#<div class="d-flex justify-content-start mt-4">
+            {% for article in category.articles %}
+                <div class="card mr-3" style="width: 18rem; max-height: 30rem; overflow:hidden;">
+                            {% if article.image %}
+                                <img src="{{ article.image }}" style="max-height:220px;" class="card-img-top" alt="">
+                            {% else %}
+                                <img src="https://via.placeholder.com/348x220&text= " style="max-height:220px;" class="card-img-top" alt="">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ article.name }}</h5>
+                                <p class="card-text" style="max-height: 5rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">{{ article.content }}</p>
+                                <a href="{{ path('article', {'id': article.id}) }}" class="btn btn-primary">Voir plus</a>
+                            </div>
+                        </div>
+            {% endfor %}
+            </div>#}
+        {% endif %}
+    {% endfor %}
+    
+</div>
+
+{% endblock %}

@@ -4,6 +4,42 @@
 
 {% block body %}
 {# ARTICLES #}
+{% if articles %}
+    <h1 style="display:inline-block;">Derniers Articles</h1><a href="{{ path('articles') }}" class="ms-3"><span class="badge bg-primary">Plus d'articles</span></a>
+    <div class="d-flex justify-content-around mt-4">
+        {% if articles|length >=3 %}
+            {% for i in articles|length -1 ..articles|length -3 %}
+                <div class="card" style="width: 18rem; max-height: 30rem; overflow:hidden;">
+                    {% if articles[i].image %}
+                        <img src="{{ articles[i].image }}" style="max-height:220px;" class="card-img-top" alt="">
+                    {% else %}
+                        <img src="https://via.placeholder.com/348x220&text= " style="max-height:220px;" class="card-img-top" alt="">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ articles[i].name }}</h5>
+                        <p class="card-text" style="max-height: 5rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">{{ articles[i].content }}</p>
+                        <a href="{{ path('article', {'id': articles[i].id}) }}" class="btn btn-primary">Voir plus</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            {% for article in articles %}
+                <div class="card" style="width: 18rem;">
+                    {% if article.image %}
+                        <img src="{{ article.image }}" style="max-height:220px;" class="card-img-top" alt="">
+                    {% else %}
+                        <img src="https://via.placeholder.com/348x220&text= " style="max-height:220px;" class="card-img-top" alt="">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.name }}</h5>
+                        <p class="card-text" style="max-height: 30rem; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">{{ article.content }}</p>
+                        <a href="{{ path('article', {'id': article.id}) }}" class="btn btn-primary">Voir plus</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endif %}
 {# END ARTICLES #}
 {# SECTION OFFRES #}
 <h1 style="display:inline-block;" class="mt-5">Nos offres</h1>

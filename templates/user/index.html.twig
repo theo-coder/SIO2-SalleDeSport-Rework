@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <h1>User index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Newsletter</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.email }}</td>
+                <td>{{ user.roles ? user.roles[0] }}</td>
+                <td>{{ user.isNewsletter ? 'Oui' : 'Non' }}</td>
+                <td>
+                    <a href="{{ path('user_show', {'id': user.id}) }}">Détails</a>
+                    {% if not app.user.id == user.id %}
+                        <a href="{{ path('user_edit', {'id': user.id}) }}">Modifier</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">Aucun Utilisateur</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

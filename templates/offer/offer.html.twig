@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ offer.name }}{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="text-center">
+    <h1>{{ offer.name }}</h1>
+    {% if offer.image %}
+        <img class="mt-2" style="max-width:1000px;" src="{{ asset(offer.image) }}">
+    {% endif %}
+    <p class="mt-4">{{ offer.description }}</p>
+    <p class="mt-4">Prix : {{ offer.price }}€</p>
+    </div>
+</div>
+
+{% endblock %}

@@ -11,17 +11,17 @@
 
 #### Lot 2 - Gestion commerciale lot 1 :
 
-- [ ] Contacter la salle : En tant que visiteur, je peux contacter la salle afin de poser mes questions
-- [ ] Consulter les offres : En tant que visiteur, je peux consulter les offres afin de me renseigner
+- [x] Contacter la salle : En tant que visiteur, je peux contacter la salle afin de poser mes questions
+- [x] Consulter les offres : En tant que visiteur, je peux consulter les offres afin de me renseigner
 - [x] S'inscrire : En tant que visiteur, je peux m'inscrire à la salle pour profiter de leurs services (newsletter, puis abonnement)
-- [ ] Gérer les offres : En tant qu'administrateur, je peux gérer les offres afin de les publier sur le site vitrine
+- [x] Gérer les offres : En tant qu'administrateur, je peux gérer les offres afin de les publier sur le site vitrine
 - [x] S'abonner à la newsletter : En tant qu'abonné, je peux m'abonner à la newsletter afin de la recevoir
-- [ ] Gérer les demandes de contacts : En tant qu'administrateur, je peux gérer les demandes de contacts afin de répondre aux demandes
+- [x] Gérer les demandes de contacts : En tant qu'administrateur, je peux gérer les demandes de contacts afin de répondre aux demandes
 - [x] Se désabonner à la newsletter : En tant qu'abonné, je peux désabonner à la newsletter afin de ne plus la recevoir
 - [x] Gérer ses informations : En tant qu'abonné, je peux gérer mes informations afin de garantir leur exactitude
-- [ ] Envoyer un mail : En tant qu'administrateur, je peux envoyer un mail d'information aux inscrits afin de les informer
+- [x] Envoyer un mail : En tant qu'administrateur, je peux envoyer un mail d'information aux inscrits afin de les informer
 
-![0%](https://progress-bar.dev/0)
+![100%](https://progress-bar.dev/100)
 
 #### Lot 3 - Sécuriser et sauvegarder le travail
 

@@ -13,7 +13,7 @@
         <a class="nav-link" href="{{ path('articles') }}">Articles</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Offres</a>
+        <a class="nav-link" href="{{ path('offers') }}">Offres</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Programmes</a>
@@ -22,7 +22,7 @@
         <a class="nav-link disabled" href="#">Cours</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Contact</a>
+        <a class="nav-link" href="{{ path('contact') }}">Contact</a>
       </li>
     </ul>
     <ul class="navbar-nav ms-auto">
@@ -34,6 +34,9 @@
         <div class="dropdown-menu" style="right: 0; float: right;" aria-labelledby="navbarDropdown">
           {% if is_granted('ROLE_ADMIN') %}
             <a class="dropdown-item" href="{{ path('user_index') }}">Utilisateurs</a>
+            <a class="dropdown-item" href="{{ path('offer_index') }}">Offres</a>
+            <a class="dropdown-item" href="{{ path('contact_admin_index') }}">Contacts</a>
+            <a class="dropdown-item" href="{{ path('newsletter') }}">Newsletter</a>
           {% endif %}
           <a class="dropdown-item" href="{{ path('article_index') }}">Articles</a>
           <a class="dropdown-item" href="{{ path('category_index') }}">Rubriques</a>

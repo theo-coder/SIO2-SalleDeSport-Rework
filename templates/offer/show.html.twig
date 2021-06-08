@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offer{% endblock %}
+
+{% block body %}
+    <h1>Offer</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ offer.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ offer.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ offer.description }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ offer.price }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{% if offer.image %}<img style="max-height:50px; max-width:300px;" src="{{ asset(offer.image) }}" alt="{{ offer.image }}">{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('offer_index') }}">Retourner à la liste</a>
+
+    <a href="{{ path('offer_edit', {'id': offer.id}) }}">Modifier</a>
+
+    {{ include('offer/_delete_form.html.twig') }}
+{% endblock %}

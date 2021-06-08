@@ -2,12 +2,17 @@
 
 namespace App\Controller;
 
+use App\Form\NewsletterType;
 use App\Form\UserInfosType;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\OfferRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -16,10 +21,11 @@ class MainController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(ArticleRepository $articleRepository, OfferRepository $offerRepository): Response
     {
         return $this->render('home/index.html.twig', [
-            'articles' => $articleRepository->findAll()
+            'articles' => $articleRepository->findAll(),
+            'offres' => $offerRepository->findAll()
         ]);
     }
 
@@ -73,6 +79,16 @@ class MainController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/offer/{id}", name="offer")
+     */
+    public function offer($id, OfferRepository $offerRepository): Response
+    {
+        return $this->render('offer/offer.html.twig', [
+            'offer' => $offerRepository->findOneBy(['id' => $id])
+        ]);
+    }
+
     
     /**
      * @Route("/articles", name="articles")
@@ -81,6 +97,52 @@ class MainController extends AbstractController
     {
         return $this->render('article/articles.html.twig', [
             'categories' => $categoryRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/offers", name="offers")
+     */
+    public function offers(OfferRepository $offerRepository)
+    {
+        return $this->render('offer/offers.html.twig', [
+            'offres' => $offerRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/admin/newsletter", name="newsletter")
+     */
+    public function newsletter(Request $request, MailerInterface $mailerInterface, UserRepository $userRepository)
+    {
+        $form = $this->createForm(NewsletterType::class);
+        $form->handleRequest($request);
+
+
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $formData = $form->getData();
+
+            $users = $userRepository->findBy(['isNewsletter' => true]);
+
+            $message = (new Email())
+                    ->from('salledesport@posty.fr')
+                    ->subject('Salle de sport Newsletter')
+                    ->text($formData['message'],'text/plain');
+
+            foreach($users as $user) {
+                $message->addTo($user->getEmail());
+            }
+
+            $mailerInterface->send($message);
+            $this->addFlash('info', 'Your message has been sent');
+            return $this->redirectToRoute('newsletter');
+        }
+
+
+
+        return $this->render('newsletter/index.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 }

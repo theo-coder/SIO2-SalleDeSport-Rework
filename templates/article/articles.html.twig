@@ -13,7 +13,7 @@
             <br>
             <h2 style="display:inline-block;" class="mt-2 ml-1">{{ category.name }} :</h2>
             {% if category.articles|length >=3 %}
-                <a href="{{ path('category', {'id': category.id}) }}" class="ml-3"><span class="badge badge-primary">Voir plus</span></a>
+                <a href="{{ path('category', {'id': category.id}) }}" class="ms-3"><span class="badge bg-primary">Voir plus</span></a>
             {% endif %}
             <div class='container'>
                 <div class="row">

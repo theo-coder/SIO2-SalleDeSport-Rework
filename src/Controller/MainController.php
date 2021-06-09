@@ -101,6 +101,16 @@ class MainController extends AbstractController
     }
 
     /**
+     * @Route("/category/{id}", name="category")
+     */
+    public function category($id, CategoryRepository $categoryRepository)
+    {
+        return $this->render('category/category.html.twig', [
+            'category' => $categoryRepository->findOneBy(['id' => $id])
+        ]);
+    }
+
+    /**
      * @Route("/offers", name="offers")
      */
     public function offers(OfferRepository $offerRepository)
